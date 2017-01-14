@@ -1,0 +1,307 @@
+WEBVTT
+
+1
+00:00:00.440 --> 00:00:03.960
+Now, there are a couple of characteristics
+of random sampling based approaches
+
+2
+00:00:03.960 --> 00:00:04.620
+that are worth noting.
+
+3
+00:00:05.870 --> 00:00:09.710
+First off, while these methods
+work very well in practice,
+
+4
+00:00:09.710 --> 00:00:11.470
+they're not strictly speaking complete.
+
+5
+00:00:12.630 --> 00:00:16.840
+A complete path planning algorithm
+would find a path if one existed, and
+
+6
+00:00:16.840 --> 00:00:19.150
+report failure if it didn't.
+
+7
+00:00:19.150 --> 00:00:23.410
+With the PRM procedure, it is possible to
+have a situation where the algorithm would
+
+8
+00:00:23.410 --> 00:00:26.700
+fail to find a path even when one exists.
+
+9
+00:00:26.700 --> 00:00:30.830
+If the sampling procedure fails to
+generate an appropriate set of samples.
+
+10
+00:00:30.830 --> 00:00:35.210
+Consider, for example, the situation shown
+in this figure where there is a path but
+
+11
+00:00:35.210 --> 00:00:38.610
+it involves finding a route
+through this small passageway.
+
+12
+00:00:38.610 --> 00:00:41.910
+In order to find this route,
+a sampling algorithm would
+
+13
+00:00:41.910 --> 00:00:45.150
+have to randomly generate
+samples in that narrow area.
+
+14
+00:00:46.510 --> 00:00:49.520
+As you can imagine,
+the smaller this passage way,
+
+15
+00:00:49.520 --> 00:00:52.690
+the less likely you are to generate
+points that lie in that region.
+
+16
+00:00:55.060 --> 00:00:59.350
+In this first case, the samples were
+relatively sparse which means that
+
+17
+00:00:59.350 --> 00:01:04.080
+the system fail to find a route from
+the left side of the figure to the right.
+
+18
+00:01:04.080 --> 00:01:07.451
+In the second case, the system
+generates a lot more samples and
+
+19
+00:01:07.451 --> 00:01:09.238
+does succeed in finding a route.
+
+20
+00:01:13.301 --> 00:01:16.253
+What we can say is that
+if there is a route and
+
+21
+00:01:16.253 --> 00:01:22.690
+the planner keeps adding random samples,
+it will eventually find a solution.
+
+22
+00:01:22.690 --> 00:01:27.500
+However, it may take a long time to
+generate a sufficient number of samples.
+
+23
+00:01:27.500 --> 00:01:31.070
+We capture this behavior by saying
+that these sampling based algorithms
+
+24
+00:01:31.070 --> 00:01:33.440
+are probabilistically complete.
+
+25
+00:01:33.440 --> 00:01:36.390
+To capture this notion
+that if a solution exists,
+
+26
+00:01:36.390 --> 00:01:40.670
+there is a probability, hopefully a large
+probability that you will find it.
+
+27
+00:01:41.750 --> 00:01:44.790
+However, if the procedure
+doesn't find a path,
+
+28
+00:01:44.790 --> 00:01:48.240
+it's hard to know whether
+there is in fact no path, or
+
+29
+00:01:48.240 --> 00:01:52.120
+whether you would be able to find
+a way if you kept trying long enough.
+
+30
+00:01:52.120 --> 00:01:55.250
+So in practice, the number of samples
+that you choose to generate for
+
+31
+00:01:55.250 --> 00:01:58.910
+the road map is an important
+parameter of this procedure.
+
+32
+00:01:58.910 --> 00:02:02.380
+In order to deal with these kinds
+of twisty passageway problems,
+
+33
+00:02:02.380 --> 00:02:06.830
+a number of approaches have been proposed
+to bias the sampling algorithm, so
+
+34
+00:02:06.830 --> 00:02:10.880
+as to increase the chances of
+finding routes in these cases.
+
+35
+00:02:10.880 --> 00:02:14.890
+For example,
+one idea is to try to sample more points
+
+36
+00:02:14.890 --> 00:02:18.280
+closer to the boundaries of
+configuration space obstacles.
+
+37
+00:02:18.280 --> 00:02:21.940
+In the hopes of constructing
+path that skirt the surfaces.
+
+38
+00:02:21.940 --> 00:02:25.990
+To date however there is
+no single sampling strategy
+
+39
+00:02:25.990 --> 00:02:29.380
+that is guaranteed to
+work well in all cases.
+
+40
+00:02:29.380 --> 00:02:34.470
+In practice most path planning
+problems are not pathological.
+
+41
+00:02:34.470 --> 00:02:37.720
+So uniform random sampling is
+usually a good place to start.
+
+42
+00:02:38.950 --> 00:02:42.650
+The other thing to be aware of
+with these random sampling methods
+
+43
+00:02:42.650 --> 00:02:45.750
+is that since the samples
+are choosing randomly
+
+44
+00:02:45.750 --> 00:02:49.099
+the resulting trajectory can sometimes
+seem very jerky and unnatural.
+
+45
+00:02:50.850 --> 00:02:54.525
+Often times people will apply path
+smoothing procedures to the recovered
+
+46
+00:02:54.525 --> 00:02:57.488
+trajectories in an attempt to
+smooth out the rough edges and
+
+47
+00:02:57.488 --> 00:02:59.157
+provide a more pleasing result.
+
+48
+00:03:00.841 --> 00:03:03.718
+A real advantage of these
+PRM based planners,
+
+49
+00:03:03.718 --> 00:03:08.480
+is that they can be applied to systems
+with lots of degrees of freedom.
+
+50
+00:03:08.480 --> 00:03:11.080
+As opposed to grid based sapling schemes,
+
+51
+00:03:11.080 --> 00:03:14.900
+which are typically restricted to
+problems in two or three dimensions.
+
+52
+00:03:14.900 --> 00:03:19.152
+Here's an example of a trajectory
+constructed for a system with six degrees
+
+53
+00:03:19.152 --> 00:03:22.619
+of freedom that guides it from
+one configuration to another.
+
+54
+00:03:25.039 --> 00:03:28.460
+Notice the slightly stilted
+nature of the trajectory.
+
+55
+00:03:28.460 --> 00:03:31.950
+Which can be attributed to the random
+samples, as we mentioned earlier.
+
+56
+00:03:33.190 --> 00:03:38.030
+Again, the fact that these random
+sampling methods can be applied
+
+57
+00:03:38.030 --> 00:03:41.770
+to systems like this with a relatively
+high number of degrees of freedom
+
+58
+00:03:41.770 --> 00:03:44.190
+is a decided advantage of
+these kinds of methods.
+
+59
+00:03:45.220 --> 00:03:49.500
+In conclusion, by relaxing
+the notion of completeness a bit and
+
+60
+00:03:49.500 --> 00:03:52.290
+embracing the power of randomization.
+
+61
+00:03:52.290 --> 00:03:56.740
+These probabilistic road map algorithms
+provide effective methods for
+
+62
+00:03:56.740 --> 00:04:00.970
+planning routes that can be applied
+to a wide range of robotic systems.
+
+63
+00:04:00.970 --> 00:04:03.200
+Including systems with
+many degrees of freedom.
